@@ -78,6 +78,9 @@ public class scSoundManager : MonoBehaviour
         }
         Debug.Log(_name + "사운드가 SoundManager에 등록되지 않았습니다");
     }
+
+  
+
     public void StopAllSE()
     {
         for(int i = 0; i< audioSourceEffects.Length; i++)
@@ -98,4 +101,14 @@ public class scSoundManager : MonoBehaviour
         }
         Debug.Log("재생 중인" + _name + "사운드가 없습니다");
     }
+
+  public void MUTEON()
+    {
+        audioSourceBFM.mute = true;
+    }
+    public void MUTEOFF()
+    {
+        audioSourceBFM.mute = false;
+    }
+
 }
