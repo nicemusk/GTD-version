@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 
 
 [System.Serializable]
@@ -29,6 +31,13 @@ public class scSoundManager : MonoBehaviour
 
     #endregion singleton
 
+    public AudioMixer audioMixer;
+
+    public Slider bgmSlider;
+    public Slider sFxSlider;
+
+
+
 
     public Sound[] effectSounds; //공격 사운드
     public Sound[] bgmSounds; //BGM 오디오 클립
@@ -38,10 +47,14 @@ public class scSoundManager : MonoBehaviour
 
     public string[] playSoundName;
 
+    public float bgmVol = 1.0f;
+    public float effectVol = 1.0f;
+
     private void Start()
     {
         playSoundName = new string[audioSourceEffects.Length];
     }
+
 
     public void PlaySE(string _name)
     {
@@ -102,13 +115,14 @@ public class scSoundManager : MonoBehaviour
         Debug.Log("재생 중인" + _name + "사운드가 없습니다");
     }
 
-  public void MUTEON()
+    public void SetBgmVolume()
     {
-        audioSourceBFM.mute = true;
+        audioMixer.SetFloat("BGM", Mathf.Log10(bgmSlider.value) * 20);
     }
-    public void MUTEOFF()
+
+    public void SetSFXVolume()
     {
-        audioSourceBFM.mute = false;
+        audioMixer.SetFloat("SFX", Mathf.Log10(sFxSlider.value) * 20);
     }
 
 }
