@@ -33,6 +33,7 @@ public class scSoundManager : MonoBehaviour
 
     public AudioMixer audioMixer;
 
+    public Slider TotalSlider;
     public Slider bgmSlider;
     public Slider sFxSlider;
 
@@ -91,8 +92,16 @@ public class scSoundManager : MonoBehaviour
         }
         Debug.Log(_name + "사운드가 SoundManager에 등록되지 않았습니다");
     }
+    public void StopBGM()
+    {
+        
+                audioSourceBFM.Stop();
+                return;
+            
+        
+    }
 
-  
+
 
     public void StopAllSE()
     {
@@ -115,6 +124,10 @@ public class scSoundManager : MonoBehaviour
         Debug.Log("재생 중인" + _name + "사운드가 없습니다");
     }
 
+    public void SetTotalVolume()
+    {
+        audioMixer.SetFloat("Master", Mathf.Log10(TotalSlider.value) * 20);
+    }
     public void SetBgmVolume()
     {
         audioMixer.SetFloat("BGM", Mathf.Log10(bgmSlider.value) * 20);

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+
     private Transform target;
 
     public float speed;
-    public int damage = 50; //공격시 데미지 50
+    public int damage = 50; //?????? ?????? 50
     public float explosionradius = 0f;
     public GameObject impactEffect;
 
@@ -15,7 +16,26 @@ public class Arrow : MonoBehaviour
     {
         target = _target;
     }
-
+   
+    private void Start()
+    {
+        if (this.gameObject.name == "01Arrow(Clone)")
+        {
+            scSoundManager.instance.PlaySE("cota");
+        }
+        else if(this.gameObject.name == "02FireBall(Clone)")
+        {
+            scSoundManager.instance.PlaySE("fire");
+        }
+        else if (this.gameObject.name == "03EnergyBall(Clone)")
+        {
+            scSoundManager.instance.PlaySE("iron");
+        }
+        else if (this.gameObject.name == "04StrageBall(Clone)")
+        {
+            scSoundManager.instance.PlaySE("doctor");
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -30,7 +50,7 @@ public class Arrow : MonoBehaviour
 
         if (dir.magnitude <= distanceThisFram)
         {
-            HitTarget(); // 호출
+            HitTarget(); // ????
             return;
         }
 
@@ -104,8 +124,8 @@ public class Arrow : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;//범위 색 레드로 지정 
-        Gizmos.DrawSphere(transform.position, explosionradius);//공격 범위 
+        Gizmos.color = Color.red;//???? ?? ?????? ???? 
+        Gizmos.DrawSphere(transform.position, explosionradius);//???? ???? 
 
     }
 }
